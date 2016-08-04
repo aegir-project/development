@@ -4,7 +4,6 @@ AEGIR_VERSION=7.x-3.x
 
 if [ ! -d aegir-home ]; then
   mkdir aegir-home
-  chmod 777 aegir-home
 fi
 
 cd aegir-home
@@ -14,7 +13,6 @@ if [ ! -d hostmaster-$AEGIR_VERSION ]; then
    drush make http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION hostmaster-$AEGIR_VERSION --working-copy --no-gitinfofile
 #   cp hostmaster-$DEVMASTER_VERSION/sites/default/default.settings.php devmaster-$DEVMASTER_VERSION/sites/default/settings.php
 #   mkdir hostmaster-$AEGIR_VERSION/sites/devshop.site
-   chmod 777 hostmaster-$AEGIR_VERSION/sites -R
 fi
 
 # Clone drush packages.
