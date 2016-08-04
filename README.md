@@ -21,15 +21,16 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
 
 1. Clone this repo and enter the 'development' folder:
 
-
+    ```
     git clone http://github.com/aegir-project/development aegir
     cd aegir
+    ```
 
 3. Run the `prepare.sh` script.
 
-
+    ```
     bash prepare-host.sh
-
+    ```
 
   This script does the following:
 
@@ -54,9 +55,10 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   If you do not want this, simply change the `docker-compose.yml` file ports to 
   something else:
   
-
+    ```
     ports:
         - 8080:80
+    ```
         
   *Using local.computer:* The domain name http://local.computer is registered to Aegir
    contributor and set to resolve to 127.0.0.1, otherwise known as localhost.
@@ -71,15 +73,17 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
 
   To get into the server as the aegir user using the terminal, run the command:
   
-  
+    ```
     docker exec -ti aegir_hostmaster_1 bash
-    
+    ```
+
   You will be dropped into a bash terminal as the aegir user, in the root folder,
    so change to your home directory with `cd` if you need to.
 
-
+    ```
     aegir@aegir:/$ cd 
     aegir@aegir:$ drush @hostmaster uli 
+    ```
       
   Remember, the home directory for the `aegir` user is mapped to `aegir-home` 
   on the docker host (your computer). Feel free to download or edit anything 
@@ -91,14 +95,16 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   
   Drop into bash, cd into the tests folder, run `composer install`
   
-      docker exec -ti aegir_hostmaster_1 bash
-      aegir@aegir:/$ cd 
-      aegir@aegir:~$ cd tests
-      aegir@aegir:~/tests$ composer install
-      
+    ```
+    docker exec -ti aegir_hostmaster_1 bash
+    aegir@aegir:/$ cd 
+    aegir@aegir:~$ cd tests
+    aegir@aegir:~/tests$ composer install
+    ```
+  
    Then bin/behat to run the tests:
       
+    ```
+    aegir@aegir:~/tests$ bin/behat
+    ```
       
-      aegir@aegir:~/tests$ bin/behat
-      
-  
