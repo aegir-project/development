@@ -38,6 +38,26 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   - Builds a hostmaster stack with the aegir.make file and uses "working copy" so all sub projects are git clones.
   - Clones provision and registry rebuild into the .drush folder.
 
+3. Build your own local container.
+ 
+ NOTE: You only have to do this on Mac or on Linux only if your user is not UID & GID 1000.
+ 
+ In order to have seamless file sharing via volumes, you must build your own hostmaster container so that the container's UID and GID match your local user.
+ 
+ Find out your local user's UID and GID by running:
+ 
+   ```
+   echo $UID
+   echo $GID
+   ```
+   
+ Then, take those values and run the command:
+ 
+   ```
+   cd dockerfiles
+   docker build --build-arg AEGIR_UID=$UID --build-arg AEGIR_GID=$UID -t aegir/hostmaster:local
+   ```
+ 
 4. Run `docker-compose up -d && docker-compose logs -f`:
 
   This will download and launch mysql and aegir containers, detach from the 
