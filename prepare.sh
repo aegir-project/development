@@ -27,7 +27,7 @@ if [ ! -d .drush ]; then
 
     git clone git@git.drupal.org:project/registry_rebuild.git --branch 7.x-2.x
 
-    cd ../../
+    cd ../../../
 fi
 
 # Clone tests
