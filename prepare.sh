@@ -21,13 +21,15 @@ fi
 if [ ! -d .drush ]; then
     mkdir .drush
     cd .drush
+    mkdir commands
+    cd commands
     git clone git@git.drupal.org:project/provision.git
     cd provision
     git checkout $AEGIR_VERSION
 
     git clone git@git.drupal.org:project/registry_rebuild.git --branch 7.x-2.x
 
-    cd ../../../
+    cd ../../../../
 fi
 
 # Clone tests
@@ -38,3 +40,7 @@ git clone git@github.com:aegir-project/documentation.git
 
 # Clone dockerfiles
 git clone git@github.com:aegir-project/dockerfiles.git
+
+# Make symlinks for easy access to important repos
+ln -s aegir-home/.drush/provision
+ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster
