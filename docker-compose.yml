@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+
+  hostmaster:
+
+    image: aegir/hostmaster
+    ports:
+      - 80:80
+    hostname: aegir.local.computer
+    links:
+      - database
+    restart: always
+    depends_on:
+      - database
+    environment:
+      MYSQL_ROOT_PASSWORD: strongpassword
+    volumes:
+      - ./aegir-source:/var/aegir
+
+  database:
+    image: mariadb
+    logging:
+      driver: none
+    environment:
+      MYSQL_ROOT_PASSWORD: strongpassword
