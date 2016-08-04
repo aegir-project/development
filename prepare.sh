@@ -19,18 +19,18 @@ fi
 
 # Clone drush packages.
 if [ ! -d .drush ]; then
-    mkdir .drush
-    cd .drush
-    mkdir commands
-    cd commands
+    mkdir -p .drush/commands
+    cd .drush/commands
     git clone git@git.drupal.org:project/provision.git
     cd provision
     git checkout $AEGIR_VERSION
 
+    cd ..
     git clone git@git.drupal.org:project/registry_rebuild.git --branch 7.x-2.x
-
-    cd ../../../../
+    cd ../..
 fi
+
+cd ../
 
 # Clone tests
 git clone git@github.com:aegir-project/tests.git aegir-home/tests
@@ -42,5 +42,18 @@ git clone git@github.com:aegir-project/documentation.git
 git clone git@github.com:aegir-project/dockerfiles.git
 
 # Make symlinks for easy access to important repos
-ln -s aegir-home/.drush/provision
+ln -s aegir-home/tests
+ln -s aegir-home/.drush/commands/provision
 ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster
+ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster/modules/aegir/hosting
+
+echo "============================================"
+echo " All setup! Now run this command to launch: "
+echo "                                                 "
+echo "   docker-compose up -d && docker-compose logs -f"
+echo "                                                 "
+echo " Execute this command to enter the aegir container:"
+echo "                                                 "
+echo "   docker-compose exec hostmaster bash           "
+echo "                                                 "
+echo " ----------------------------------------------- "
