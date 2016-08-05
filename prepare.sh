@@ -4,7 +4,6 @@ AEGIR_VERSION=7.x-3.x
 
 if [ ! -d aegir-home ]; then
   mkdir aegir-home
-  chmod 777 aegir-home
 fi
 
 cd aegir-home
@@ -14,7 +13,6 @@ if [ ! -d hostmaster-$AEGIR_VERSION ]; then
    drush make http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION hostmaster-$AEGIR_VERSION --working-copy --no-gitinfofile
 #   cp hostmaster-$DEVMASTER_VERSION/sites/default/default.settings.php devmaster-$DEVMASTER_VERSION/sites/default/settings.php
 #   mkdir hostmaster-$AEGIR_VERSION/sites/devshop.site
-   chmod 777 hostmaster-$AEGIR_VERSION/sites -R
 fi
 
 # Clone drush packages.
@@ -47,7 +45,7 @@ ln -s aegir-home/.drush/commands/provision
 ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster
 ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster/modules/aegir/hosting
 
-echo "============================================"
+echo "================================================="
 echo " All setup! Now run this command to launch: "
 echo "                                                 "
 echo "   docker-compose up -d                          "
@@ -62,4 +60,16 @@ echo " Execute this command to enter the aegir container:"
 echo "                                                 "
 echo "   docker-compose exec hostmaster bash           "
 echo "                                                 "
-echo " ----------------------------------------------- "
+echo "-------------------------------------------------"
+echo " NOTE: On some hosts (like Fedora) you might get "
+echo "   an error on docker-compose up:                 "
+echo "                                                 "
+echo "      opendir(/var/aegir/.drush): failed to open dir: Permission denied  "
+echo "                                                 "
+echo "   This is likely because you have SELinux setup."
+echo "   To fix, run the following command:            "
+echo "                                                 "
+echo "   chcon -Rt svirt_sandbox_file_t aegir-home     "
+echo "-------------------------------------------------"
+echo " Thanks! Please report any issues to http://github.com/aegir-project/development "
+echo "================================================="
