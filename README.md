@@ -55,7 +55,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
  
    ```
    cd dockerfiles
-   docker build --build-arg AEGIR_UID=$UID --build-arg AEGIR_GID=$UID -t aegir/hostmaster:local
+   docker build --build-arg AEGIR_UID=$UID --build-arg AEGIR_GID=$UID -t aegir/hostmaster:local .
    ```
  
 4. Run `docker-compose up -d && docker-compose logs -f`:
