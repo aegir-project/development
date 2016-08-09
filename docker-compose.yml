@@ -23,3 +23,7 @@ services:
       driver: none
     environment:
       MYSQL_ROOT_PASSWORD: strongpassword
+
+    # These options are needed for Drupal 7.50 and up for full UTF-8 support.
+    # See https://www.drupal.org/node/2754539
+    command: mysqld --innodb-large-prefix --innodb-file-format=barracuda --innodb-file-per-table
