@@ -29,19 +29,25 @@ fi
 cd ../
 
 # Clone tests
-git clone git@github.com:aegir-project/tests.git aegir-home/tests
+if [ ! -d aegir-home/tests ]; then
+  git clone git@github.com:aegir-project/tests.git aegir-home/tests
+fi
 
 # Clone documentation
-git clone git@github.com:aegir-project/documentation.git
+if [ ! -d documentation ]; then
+  git clone git@github.com:aegir-project/documentation.git
+fi
 
 # Clone dockerfiles
-git clone git@github.com:aegir-project/dockerfiles.git
+if [ ! -d dockerfiles ]; then
+  git clone git@github.com:aegir-project/dockerfiles.git
+fi
 
 # Make symlinks for easy access to important repos
-ln -s aegir-home/tests
-ln -s aegir-home/.drush/commands/provision
-ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster
-ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster/modules/aegir/hosting
+ln -s aegir-home/tests 2> /dev/null
+ln -s aegir-home/.drush/commands/provision  2> /dev/null
+ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster 2> /dev/null
+ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster/modules/aegir/hosting  2> /dev/null
 
 echo "================================================="
 echo " Codebase preparation complete..."
