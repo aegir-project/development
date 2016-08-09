@@ -109,3 +109,19 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
     aegir@aegir:~/tests$ bin/behat
     ```
       
+      
+## Troubleshooting
+
+### SELinux
+     
+  ```
+  opendir(/var/aegir/.drush): failed to open dir: Permission denied
+  ````
+ 
+  If you receive error messages like this, it's likely because you have SELinux setup.
+
+  To fix, run the following command:            
+  
+  ```
+  chcon -Rt svirt_sandbox_file_t aegir-home     
+  ```
