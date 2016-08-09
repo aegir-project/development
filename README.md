@@ -49,10 +49,10 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   "Congratulations" message and the one-time-login link.
 
   Once running, you can edit the files in ./aegir/hostmaster-7.x-3.x and get live when loading the site at http://aegir.local.computer
-  
+
   *NOTE:* The `docker-compose.yml` is set to utilize port 80, so you will get an error
   if you have any other web server running locally on port 80.
-  
+
   If you do not want this, simply change the `docker-compose.yml` file ports to 
   something else:
   
@@ -60,16 +60,16 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
     ports:
         - 8080:80
     ```
-        
+
   *Using local.computer:* The domain name http://local.computer is registered to Aegir
    contributor and set to resolve to 127.0.0.1, otherwise known as localhost.
-   
+
    There is also a wildcard domain, so any subdomain on local.computer resolves
    to localhost.  This development environment uses the hostname 
    http://aegir.local.computer.  When you are creating sites in aegir, if you 
    want to access them without messing with DNS or Hosts file, you can use 
    http://sitename.local.computer as the domain name.
-   
+
 5. Get into the container:
 
   To get into the server as the aegir user using the terminal, run the command:
@@ -85,15 +85,15 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
     aegir@aegir:/$ cd 
     aegir@aegir:$ drush @hostmaster uli 
     ```
-      
+
   Remember, the home directory for the `aegir` user is mapped to `aegir-home` 
   on the docker host (your computer). Feel free to download or edit anything 
   into that folder.
-  
+
 6. Running Tests
 
   We have behat tests you should run if you start to work on Aegir.
-  
+
   Drop into bash, cd into the tests folder, run `composer install`
   
     ```
@@ -102,7 +102,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
     aegir@aegir:~$ cd tests
     aegir@aegir:~/tests$ composer install
     ```
-  
+
    Then bin/behat to run the tests:
       
     ```
