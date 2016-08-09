@@ -46,6 +46,23 @@ ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster
 ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster/modules/aegir/hosting
 
 echo "================================================="
+echo " Codebase preparation complete..."
+echo "-------------------------------------------------"
+echo " Preparing to build local docker image..."
+
+USER_UID=`id -u`
+
+echo " Found UID: $USER_UID "
+echo "-------------------------------------------------"
+echo " About to run 'docker build' command to create a custom image for you."
+echo " If you wish to abort, now is the time to hit CTRL-C "
+echo ""
+echo " Waiting 5 seconds..."
+sleep 5
+
+docker build --build-arg AEGIR_UID=$USER_UID --build-arg AEGIR_GID=$USER_UID -t aegir/hostmaster:local dockerfiles
+
+echo "================================================="
 echo " All setup! Now run this command to launch: "
 echo "                                                 "
 echo "   docker-compose up -d                          "

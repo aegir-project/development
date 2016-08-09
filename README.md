@@ -37,38 +37,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   - Creates an "aegir-home" folder and opens permissions. This maps to `/var/aegir` in the container.
   - Builds a hostmaster stack with the aegir.make file and uses "working copy" so all sub projects are git clones.
   - Clones provision and registry rebuild into the .drush folder.
-
-3. Build your own local container.
- 
- In order to have seamless file sharing via volumes, you must build your own hostmaster container so that the container's UID and GID match your local user.
- 
- Find out your local user's UID by running:
- 
-   ```
-   $ echo $UID
-   501   # Usually what you get on a Mac
-   1000  # Usually what you get on Linux
-   ```
-
-   Certain systems don't maintain a $UID variable, so use the id -u command:
-
-   ```
-   $ id -u
-   1000  
-   ```
-   
- Then, take that value and run the command:
- 
-   ```
-   cd dockerfiles
-   docker build --build-arg AEGIR_UID=501 --build-arg AEGIR_GID=501 -t aegir/hostmaster:local .
-   ```
-   
-   Remember to change `501` to `1000` or whatever your UID is.
-   
-   This will build the container images with the aegir user having the UID/GID that matches the docker host.
-   
-   This means that any files created by aegir in the container are writable by you, and vice versa, allowing for easy development. 
+  - Creates a custom local container for you, using your user's UID. This is so mounted folders can be written to and don't get saved as root on the host.
  
 4. Run `docker-compose up -d && docker-compose logs -f`:
 
