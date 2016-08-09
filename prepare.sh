@@ -56,22 +56,23 @@ if [ ! -d dockerfiles ]; then
 fi
 
 # Make symlinks for easy access to important repos
-if [ ! -f tests ]; then
+if [ ! -L tests ]; then
   echo "Æ | Creating symlinks to all git repos..."
   ln -s aegir-home/tests 2> /dev/null
   ln -s aegir-home/.drush/commands/provision  2> /dev/null
   ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster 2> /dev/null
   ln -s aegir-home/hostmaster-$AEGIR_VERSION/profiles/hostmaster/modules/aegir/hosting  2> /dev/null
 fi;
-echo "Æ | Codebase preparation complete."
 echo "==========================ÆGIR=========================="
+echo "Codebase preparation complete."
 
 USER_UID=`id -u`
 
-echo " Found UID: $USER_UID "
 echo "--------------------------------------------------------"
 echo " About to run 'docker build' command to create a custom image for you."
 echo " If you wish to abort, now is the time to hit CTRL-C "
+echo ""
+echo " Found UID: $USER_UID "
 echo ""
 echo " Waiting 5 seconds..."
 echo "--------------------------------------------------------"
