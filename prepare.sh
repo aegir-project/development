@@ -11,8 +11,6 @@ cd aegir-home
 # Build a full hostmaster frontend on the host with drush make, with working-copy option.
 if [ ! -d hostmaster-$AEGIR_VERSION ]; then
    drush make http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION hostmaster-$AEGIR_VERSION --working-copy --no-gitinfofile
-#   cp hostmaster-$DEVMASTER_VERSION/sites/default/default.settings.php devmaster-$DEVMASTER_VERSION/sites/default/settings.php
-#   mkdir hostmaster-$AEGIR_VERSION/sites/devshop.site
 fi
 
 # Clone drush packages.
