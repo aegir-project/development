@@ -17,7 +17,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   - git
   - drush (locally, for building the stack).
   - docker. Docker for Mac Beta now works great.
-  - docker-compose. Get the latest stable docker-compose, to ensure version 2 compose.yml file compatibility.
+  - docker-compose. Get the latest stable docker-compose(> 1.6), to ensure version 2 compose.yml file compatibility.
 
 1. Clone this repo and enter the 'development' folder:
 
