@@ -29,7 +29,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
 3. Run the `prepare.sh` script.
 
     ```
-    bash prepare-host.sh
+    bash prepare.sh
     ```
 
   This script does the following:
