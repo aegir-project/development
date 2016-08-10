@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 AEGIR_VERSION=7.x-3.x
 echo "==========================ÆGIR=========================="
