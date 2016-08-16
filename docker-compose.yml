@@ -23,6 +23,9 @@ services:
       driver: none
     environment:
       MYSQL_ROOT_PASSWORD: strongpassword
+    # Optionally keep the mysql db files in an accessible directory.
+    #volumes:
+    #  - ./aegir-db:/var/lib/mysql
 
     # These options are needed for Drupal 7.50 and up for full UTF-8 support.
     # See https://www.drupal.org/node/2754539
