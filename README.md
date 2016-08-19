@@ -16,6 +16,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
 0. Install pre-requisites:
   - git
   - drush (locally, for building the stack).
+  - have ssh public key authentication setup for Drupal.org and GitHub.
   - docker. Docker for Mac Beta now works great.
   - docker-compose. Get the latest stable docker-compose(> 1.6), to ensure version 2 compose.yml file compatibility.
 
