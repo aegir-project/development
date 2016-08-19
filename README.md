@@ -19,11 +19,11 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   - docker. Docker for Mac Beta now works great.
   - docker-compose. Get the latest stable docker-compose(> 1.6), to ensure version 2 compose.yml file compatibility.
 
-1. Clone this repo and enter the 'development' folder:
+1. Clone this repo and enter the 'aegir-development' folder:
 
     ```
-    git clone http://github.com/aegir-project/development aegir
-    cd aegir
+    git clone http://github.com/aegir-project/development aegir-development
+    cd aegir-development
     ```
 
 3. Run the `prepare.sh` script.
