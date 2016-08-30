@@ -18,12 +18,9 @@ services:
   - docker
 
 before_script:
-  - ls -la ~/
-  - mkdir ~/.ssh
+  - ls -la ~/.ssh
   - echo 'Host *' >> ~/.ssh/config
   - echo '  StrictHostKeyChecking no' >> ~/.ssh/config
-  - chmod 700 ~/.ssh/
-  - ls -la ~/.ssh
   - cat ~/.ssh/config
 
 script:
