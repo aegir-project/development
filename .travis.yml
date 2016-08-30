@@ -21,6 +21,7 @@ before_script:
   - echo 'Host git.drupal.org' >> ~/.ssh/config
   - echo '  StrictHostKeyChecking no' >> ~/.ssh/config
   - cat ~/.ssh/config
+  - ls -la ~/.ssh
 
 script:
   - sudo bash prepare.sh
