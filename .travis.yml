@@ -17,5 +17,9 @@ addons:
 services:
   - docker
 
+before_script:
+  - echo 'Host *' >> ~/.ssh/config
+  - echo '  StrictHostKeyChecking no' >> ~/.ssh/config
+
 script:
   - sudo bash prepare.sh
