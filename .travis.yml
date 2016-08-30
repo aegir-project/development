@@ -1,0 +1,21 @@
+language: generic
+
+sudo: required
+
+#env:
+#  - test: Ubuntu 14.04 Apache
+#    distribution: ubuntu
+#    version: 14.04
+#    init: /sbin/init
+#    run_opts: ""
+
+addons:
+  hosts:
+    - aegir.local.computer
+    - sitetest.aegir.local.computer
+
+services:
+  - docker
+
+script:
+  - sudo bash prepare.sh
