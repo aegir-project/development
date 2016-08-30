@@ -18,8 +18,7 @@ services:
   - docker
 
 before_script:
-  - ls -la ~/.ssh
-  - echo 'Host *' >> ~/.ssh/config
+  - echo 'Host git.drupal.org' >> ~/.ssh/config
   - echo '  StrictHostKeyChecking no' >> ~/.ssh/config
   - cat ~/.ssh/config
 
