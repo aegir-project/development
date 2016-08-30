@@ -15,7 +15,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: strongpassword
     volumes:
-      - ./aegir-home:/var/aegir
+      - ./aegir-home:/var/aegir:Z
 
   database:
     image: mariadb
