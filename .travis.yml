@@ -18,11 +18,10 @@ services:
   - docker
 
 before_script:
-  - echo 'Host git.drupal.org' >> ~/.ssh/config
-  - echo '  StrictHostKeyChecking no' >> ~/.ssh/config
-  - chmod 400 ~/.ssh/config
-  - cat ~/.ssh/config
-  - ls -la ~/.ssh
+  - sudo su -c "echo 'Host git.drupal.org' >> ~/.ssh/config; echo '  StrictHostKeyChecking no' >> ~/.ssh/config "
+  - sudo chmod 400 ~/.ssh/config
+  - sudo cat ~/.ssh/config
+  - sudo ls -la ~/.ssh
 
 script:
   - sudo bash prepare.sh
