@@ -31,13 +31,13 @@ services:
     # See https://www.drupal.org/node/2754539
     command: mysqld --innodb-large-prefix --innodb-file-format=barracuda --innodb-file-per-table
 
-phpmyadmin:
-  ports:
-  - 808:80
-  environment:
-    MYSQL_ROOT_PASSWORD: longrandomsecurepassword
-  tty: true
-  image: phpmyadmin/phpmyadmin
-  links:
-  - database:db
-  stdin_open: true
+  phpmyadmin:
+    ports:
+    - 808:80
+    environment:
+      MYSQL_ROOT_PASSWORD: longrandomsecurepassword
+    tty: true
+    image: phpmyadmin/phpmyadmin
+    links:
+    - database:db
+    stdin_open: true
