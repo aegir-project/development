@@ -78,7 +78,8 @@ echo " Waiting 5 seconds..."
 echo "--------------------------------------------------------"
 sleep 5
 
-echo "Æ | Running docker build --build-arg AEGIR_UID=$USER_UID --build-arg AEGIR_GID=$USER_UID -t aegir/hostmaster:local -f dockerfiles/Dockerfile-local dockerfiles"
+echo "Æ | Running docker build --build-arg AEGIR_UID=$USER_UID -t aegir/hostmaster:local -f dockerfiles/Dockerfile-local dockerfiles
+"
 docker build --build-arg AEGIR_UID=$USER_UID -t aegir/hostmaster:local -f dockerfiles/Dockerfile-local dockerfiles
 
 echo "==========================ÆGIR=========================="
