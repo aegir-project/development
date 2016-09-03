@@ -1,15 +1,15 @@
 version: '2'
 
 services:
-  load:
-    image: tutum/haproxy
-    links:
-        - hostmaster
-    ports:
-      - 80:80
-    restart: always
-    depends_on:
-      - hostmaster
+#  load:
+#    image: tutum/haproxy
+#    links:
+#        - hostmaster
+#    ports:
+#      - 80:80
+#    restart: always
+#    depends_on:
+#      - hostmaster
   hostmaster:
     privileged: true
     image: aegir/hostmaster:local
