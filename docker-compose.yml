@@ -11,10 +11,10 @@ services:
     depends_on:
       - hostmaster
   hostmaster:
-
+    privileged: true
     image: aegir/hostmaster:local
     ports:
-      - 80
+      - 80:80
     hostname: aegir.local.computer
     links:
       - database
@@ -24,7 +24,7 @@ services:
       MYSQL_ROOT_PASSWORD: strongpassword
     volumes:
       - ./aegir-home:/var/aegir
-
+      - /var/run/docker.sock:/var/run/docker.sock
   database:
     image: mariadb
     logging:
