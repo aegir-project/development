@@ -30,3 +30,14 @@ services:
     # These options are needed for Drupal 7.50 and up for full UTF-8 support.
     # See https://www.drupal.org/node/2754539
     command: mysqld --innodb-large-prefix --innodb-file-format=barracuda --innodb-file-per-table
+
+phpmyadmin:
+  ports:
+  - 808:80
+  environment:
+    MYSQL_ROOT_PASSWORD: longrandomsecurepassword
+  tty: true
+  image: phpmyadmin/phpmyadmin
+  links:
+  - database:db
+  stdin_open: true
