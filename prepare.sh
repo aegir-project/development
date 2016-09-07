@@ -78,9 +78,14 @@ echo " Waiting 5 seconds..."
 echo "--------------------------------------------------------"
 sleep 5
 
-echo "Æ | Running docker build --build-arg AEGIR_UID=$USER_UID -t aegir/hostmaster:local -f dockerfiles/Dockerfile-local dockerfiles
-"
-docker build --build-arg AEGIR_UID=$USER_UID -t aegir/hostmaster:local -f dockerfiles/Dockerfile-local dockerfiles
+echo "Æ | Running docker build ..."
+
+cd dockerfiles
+docker build -t aegir/hostmaster:own --build-arg AEGIR_UID=$USER_UID .
+
+# @TODO: Do we need to do this? Or can we just specify volume to /var/aegir in the compose file?
+docker build -t aegir/hostmaster:local -f Dockerfile-local .
+cd ..
 
 echo "==========================ÆGIR=========================="
 echo " About to run 'docker compose up -d && docker-logs -f'"
