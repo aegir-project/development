@@ -111,14 +111,8 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
     ```
 
 ## Tips
-      
-When working on the Dockerfile, docker-compose file, and then aegir itself it can get confusing and repetitive to rebuild your containers.
 
-Here is the script I use to destroy and rebuild everything in one command, and end up reading the logs of a newly built cluster.
-
-    docker-compose kill; docker-compose rm -fv; docker build -t aegir/hostmaster -f dockerfiles/Dockerfile dockerfiles; docker build -t aegir/hostmaster:local -f dockerfiles/Dockerfile-local dockerfiles; rm -rf aegir-home/hostmaster-7.x-3.x/sites/aegir.local.computer; docker-compose up -d; docker-compose logs -f
-      
-Then you can just hit CTRL-C to stop following the logs, the up key to run the command again, and it will kill & remove the images, rebuild the main Dockerfile, rebuild the local Dockerfile, remove the sites/aegir.local.computer (required to get it to install again) then up the containers.      
+When working on the Dockerfile, docker-compose file, and then aegir itself it can get confusing and repetitive to rebuild your containers. You can use the `rebuild.sh` script
 
 ## Troubleshooting
 
