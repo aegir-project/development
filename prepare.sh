@@ -99,7 +99,12 @@ echo " Waiting 5 seconds..."
 sleep 5
 
 docker-compose up -d
-docker-compose logs -ft
+
+if [ "$TRAVIS" == 'true' ]; then
+  echo "We're in Travis mode ... skipping 'docker-compose logs -ft'"
+else
+  docker-compose logs -ft
+fi
 
 echo "==========================ÆGIR=========================="
 echo " Stopped following logs. To view logs again:     "
