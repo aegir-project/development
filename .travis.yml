@@ -1,0 +1,43 @@
+language: generic
+
+sudo: required
+
+# Only run test when committing to a master branch.
+branches:
+  only:
+    - master
+
+#env:
+#  - test: Ubuntu 14.04 Apache
+#    distribution: ubuntu
+#    version: 14.04
+#    init: /sbin/init
+#    run_opts: ""
+
+addons:
+  hosts:
+    - aegir.local.computer
+    - sitetest.aegir.local.computer
+
+services:
+  - docker
+
+before_script:
+
+  # Generate SSH key so it doesn't ask us for a password.
+  - ssh-keygen -t rsa -N "" -f ~/.ssh/id_rsa
+  - echo 'Host *' >> ~/.ssh/config
+  - echo '  StrictHostKeyChecking no' >> ~/.ssh/config
+  - chmod 400 ~/.ssh/config
+  - cat ~/.ssh/config
+  - ls -la ~/.ssh
+
+  # Install php and drush.
+  - sudo apt-get install php5-cli
+  - sudo wget https://github.com/drush-ops/drush/releases/download/8.1.3/drush.phar
+  - sudo mv drush.phar /usr/local/bin/drush
+  - sudo chmod +x /usr/local/bin/drush
+
+script:
+  # Switch to docker group to run prepare.sh
+  - sg - docker -c 'bash prepare.sh'

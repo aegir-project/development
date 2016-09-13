@@ -19,19 +19,27 @@ if [ ! -d hostmaster-$AEGIR_VERSION ]; then
    drush make http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION hostmaster-$AEGIR_VERSION --working-copy --no-gitinfofile
 fi
 
+
+DRUPALORG_PREFIX=https://git.drupal.org/project/
+GITHUB_PREFIX=https://github.com/aegir-project/
+
+# Uncomment to clone git repositories via SSH.
+#DRUPALORG_PREFIX=git@git.drupal.org:project/
+#GITHUB_PREFIX=git@github.com:aegir-project/
+
 # Clone drush packages.
 if [ ! -d .drush ]; then
     echo "Æ | Creating .drush/commands folder..."
     mkdir -p .drush/commands
     cd .drush/commands
     echo "Æ | Cloning Provision..."
-    git clone git@git.drupal.org:project/provision.git
+    git clone ${DRUPALORG_PREFIX}provision.git
     cd provision
     git checkout $AEGIR_VERSION
 
     cd ..
     echo "Æ | Cloning Registry Rebuild..."
-    git clone git@git.drupal.org:project/registry_rebuild.git --branch 7.x-2.x
+    git clone ${DRUPALORG_PREFIX}registry_rebuild.git --branch 7.x-2.x
     cd ../..
 fi
 
@@ -40,19 +48,19 @@ cd ../
 # Clone tests
 if [ ! -d aegir-home/tests ]; then
   echo "Æ | Cloning tests..."
-  git clone git@github.com:aegir-project/tests.git aegir-home/tests
+  git clone ${GITHUB_PREFIX}tests.git aegir-home/tests
 fi
 
 # Clone documentation
 if [ ! -d documentation ]; then
   echo "Æ | Cloning documentation..."
-  git clone git@github.com:aegir-project/documentation.git
+  git clone ${GITHUB_PREFIX}documentation.git
 fi
 
 # Clone dockerfiles
 if [ ! -d dockerfiles ]; then
   echo "Æ | Cloning dockerfiles..."
-  git clone git@github.com:aegir-project/dockerfiles.git
+  git clone ${GITHUB_PREFIX}dockerfiles.git
 fi
 
 # Make symlinks for easy access to important repos
@@ -97,7 +105,12 @@ echo " Waiting 5 seconds..."
 sleep 5
 
 docker-compose up -d
-docker-compose logs -ft
+
+if [ "$TRAVIS" == 'true' ]; then
+  echo "We're in Travis mode ... skipping 'docker-compose logs -ft'"
+else
+  docker-compose logs -ft
+fi
 
 echo "==========================ÆGIR=========================="
 echo " Stopped following logs. To view logs again:     "
