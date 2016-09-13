@@ -41,7 +41,7 @@ services:
 
   phpmyadmin:
     ports:
-    - 808:80
+    - 8081:80
     environment:
       MYSQL_ROOT_PASSWORD: longrandomsecurepassword
     tty: true
