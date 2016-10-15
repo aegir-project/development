@@ -1,6 +1,8 @@
 #!/bin/bash
 
 AEGIR_VERSION=7.x-3.x
+AEGIR_HOSTMASTER_ROOT=hostmaster
+
 echo "==========================ÆGIR=========================="
 echo " Hello there.                                           "
 echo " Let's prepare a development environment for you.       "
@@ -14,9 +16,9 @@ fi
 cd aegir-home
 
 # Build a full hostmaster frontend on the host with drush make, with working-copy option.
-if [ ! -d hostmaster-$AEGIR_VERSION ]; then
+if [ ! -d $AEGIR_HOSTMASTER_ROOT ]; then
    echo "Æ | Building hostmaster with drush make..."
-   drush make http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION hostmaster-$AEGIR_VERSION --working-copy --no-gitinfofile
+   drush make http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION $AEGIR_HOSTMASTER_ROOT --working-copy --no-gitinfofile
 fi
 
 
