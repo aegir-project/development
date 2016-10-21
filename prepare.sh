@@ -111,7 +111,7 @@ docker-compose up -d
 if [ "$TRAVIS" == 'true' ]; then
   echo "We're in Travis mode ... skipping 'docker-compose logs -ft'"
 else
-  docker-compose logs -ft
+  docker-compose logs -f
 fi
 
 echo "==========================ÆGIR=========================="
