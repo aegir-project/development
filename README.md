@@ -39,7 +39,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   - Builds a hostmaster stack with the aegir.make file and uses "working copy" so all sub projects are git clones.
   - Clones provision and registry rebuild into the .drush folder.
   - Creates a custom local container for you, using your user's UID. This is so mounted folders can be written to and don't get saved as root on the host.
- 
+
 4. Run `docker-compose up -d && docker-compose logs -f`:
 
   This will download and launch mysql and aegir containers, detach from the 
@@ -49,7 +49,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   You will have to wait a bit for hostmaster to install. Watch the logs for the
   "Congratulations" message and the one-time-login link.
 
-  Once running, you can edit the files in ./aegir/hostmaster-7.x-3.x and get live when loading the site at http://aegir.local.computer
+  Once running, you can edit the files in ./aegir-home/hostmaster and get live when loading the site at http://aegir.local.computer
 
   *NOTE:* The `docker-compose.yml` is set to utilize port 80, so you will get an error
   if you have any other web server running locally on port 80.
@@ -76,7 +76,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   To get into the server as the aegir user using the terminal, run the command:
   
     ```
-    docker exec -ti aegir_hostmaster_1 bash
+    docker exec -ti development_hostmaster_1 bash
     ```
 
   You will be dropped into a bash terminal as the aegir user, in the root folder,
@@ -98,7 +98,7 @@ Got feedback? Suggested changes? Visit the repo at http://github.com/aegir-proje
   Drop into bash, cd into the tests folder, run `composer install`
   
     ```
-    docker exec -ti aegir_hostmaster_1 bash
+    docker exec -ti development_hostmaster_1 bash
     aegir@aegir:/$ cd 
     aegir@aegir:~$ cd tests
     aegir@aegir:~/tests$ composer install
@@ -117,7 +117,7 @@ When working on the Dockerfile, docker-compose file, and then aegir itself it ca
 ## Troubleshooting
 
 ### SELinux
-     
+
   ```
   opendir(/var/aegir/.drush): failed to open dir: Permission denied
   ````
@@ -127,5 +127,5 @@ When working on the Dockerfile, docker-compose file, and then aegir itself it ca
   To fix, run the following command:            
   
   ```
-  chcon -Rt svirt_sandbox_file_t aegir-home     
+  chcon -Rt svirt_sandbox_file_t aegir-home
   ```
