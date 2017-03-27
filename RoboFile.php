@@ -74,29 +74,89 @@ class RoboFile extends \Robo\Tasks
     $this->say("Found UID $user_uid. Passing to docker build as a build-arg...");
 
     // aegir/hostmaster
-    $this->taskDockerBuild('dockerfiles')
+    if ($this->taskDockerBuild('dockerfiles')
       ->option('file', 'dockerfiles/Dockerfile')
       ->option('build-arg', "AEGIR_UID=$user_uid")
       ->tag('aegir/hostmaster')
       ->run()
-    ;
+      ->wasSuccessful() == FALSE) {
+      $this->yell('Docker Build Failed!');
+      exit(1);
+    }
+
     // aegir/hostmaster:xdebug
-    $this->taskDockerBuild('dockerfiles')
+    if ($this->taskDockerBuild('dockerfiles')
       ->option('file', 'dockerfiles/Dockerfile-xdebug')
       ->tag('aegir/hostmaster:xdebug')
       ->run()
-    ;
+      ->wasSuccessful() == FALSE) {
+        $this->yell('Docker Build Failed!');
+      exit(1);
+    }
+
     // aegir/hostmaster:privileged
-    $this->taskDockerBuild('dockerfiles')
+    if ($this->taskDockerBuild('dockerfiles')
       ->option('file', 'dockerfiles/Dockerfile-privileged')
       ->tag('aegir/hostmaster:privileged')
       ->run()
-    ;
+      ->wasSuccessful() == FALSE) {
+      $this->yell('Docker Build Failed!', '');
+      exit(1);
+    }
+
     // aegir/web
-    $this->taskDockerBuild('dockerfiles')
+    if ($this->taskDockerBuild('dockerfiles')
       ->option('file', 'dockerfiles/Dockerfile-web')
       ->tag('aegir/web')
       ->run()
-    ;
+        ->wasSuccessful() == FALSE) {
+      $this->yell('Docker Build Failed!');
+      exit(1);
+    }
+  }
+
+  /**
+   * Launch devshop containers using docker-compose up and follow logs.
+   *
+   * Use "--test" option to run tests instead of the hosting queue.
+   */
+  public function up($opts = ['follow' => 1, 'test' => false, 'prepare_containers' => false]) {
+
+    if (!file_exists('aegir-home')) {
+      if ($opts['no-interaction'] || $this->ask('aegir-home does not yet exist. Run "prepare:sourcecode" command?')) {
+        if ($this->prepareSourcecode() == FALSE) {
+          $this->say('Prepare source code failed.');
+          exit(1);
+        }
+      }
+      else {
+        $this->say('aegir-home must exist for Aegir to work. Not running docker-compose up.');
+        return;
+      }
+    }
+
+
+    if ($opts['prepare_containers']) {
+      if ($this->prepareContainers() == FALSE) {
+        $this->say('Prepare source code failed.');
+        exit(1);
+      }
+    }
+
+    if ($opts['test']) {
+      $cmd = "docker-compose run hostmaster 'run-tests.sh'";
+    }
+    else {
+      $cmd = "docker-compose up -d";
+      if ($opts['follow']) {
+        $cmd .= "; docker-compose logs -f";
+      }
+    }
+    if ($this->_exec($cmd)->wasSuccessful()) {
+      exit(0);
+    }
+    else {
+      exit(1);
+    }
   }
 }
