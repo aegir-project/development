@@ -120,7 +120,7 @@ class RoboFile extends \Robo\Tasks
    *
    * Use "--test" option to run tests instead of the hosting queue.
    */
-  public function up($opts = ['follow' => 1, 'test' => false, 'prepare_containers' => false]) {
+  public function up($opts = ['follow' => 1, 'test' => false, 'prepare-containers' => false]) {
 
     if (!file_exists('aegir-home')) {
       if ($opts['no-interaction'] || $this->ask('aegir-home does not yet exist. Run "prepare:sourcecode" command?')) {
@@ -136,7 +136,7 @@ class RoboFile extends \Robo\Tasks
     }
 
 
-    if ($opts['prepare_containers']) {
+    if ($opts['prepare-containers']) {
       if ($this->prepareContainers() == FALSE) {
         $this->say('Prepare source code failed.');
         exit(1);
