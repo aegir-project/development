@@ -1,7 +1,7 @@
 #!/bin/bash
 
 AEGIR_VERSION=7.x-3.x
-AEGIR_HOSTMASTER_ROOT=hostmaster
+AEGIR_HOSTMASTER_ROOT=hostmaster-$AEGIR_VERSION
 
 echo "==========================ÆGIR=========================="
 echo " Hello there.                                           "
