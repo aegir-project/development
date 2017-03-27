@@ -45,13 +45,13 @@ if [ ! -d .drush ]; then
     cd ../..
 fi
 
-cd ../
-
 # Clone tests
-if [ ! -d aegir-home/tests ]; then
+if [ ! -d tests ]; then
   echo "Æ | Cloning tests..."
-  git clone ${GITHUB_PREFIX}tests.git aegir-home/tests
+  git clone ${GITHUB_PREFIX}tests.git
 fi
+
+cd ../
 
 # Clone documentation
 if [ ! -d documentation ]; then
