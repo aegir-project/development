@@ -113,6 +113,7 @@ class RoboFile extends \Robo\Tasks
       $this->yell('Docker Build Failed!');
       exit(1);
     }
+    return TRUE;
   }
 
   /**
