@@ -12,7 +12,7 @@ services:
 #      - hostmaster
   hostmaster:
     privileged: true
-    image: aegir/hostmaster:local
+    image: aegir/hostmaster:xdebug
     ports:
       - 80:80
     hostname: aegir.local.computer
