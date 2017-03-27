@@ -159,4 +159,21 @@ class RoboFile extends \Robo\Tasks
       exit(1);
     }
   }
+
+  /**
+   * Destroy all containers, docker volumes, and aegir configuration.
+   */
+  public function destroy() {
+    $this->_exec('docker-compose kill');
+    $this->_exec('docker-compose rm -fv');
+
+    if ($this->confirm("Remove source code?")) {
+      if ($this->_exec("sudo rm -rf aegir-home")->wasSuccessful()) {
+        $this->say("Deleted source code.");
+      }
+      else {
+        $this->yell('Unable to delete local source code! Remove manually to fully destroy your local install.');
+      }
+    }
+  }
 }
