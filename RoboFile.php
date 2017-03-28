@@ -139,7 +139,7 @@ class RoboFile extends \Robo\Tasks
 
     if ($opts['prepare-containers']) {
       if ($this->prepareContainers() == FALSE) {
-        $this->say('Prepare source code failed.');
+        $this->say('Preparing containers failed.');
         exit(1);
       }
     }
