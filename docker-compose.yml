@@ -12,7 +12,7 @@ services:
 #      - hostmaster
   hostmaster:
     privileged: true
-    image: aegir/hostmaster:xdebug
+    image: aegir/hostmaster:privileged
     ports:
       - 80:80
     hostname: aegir.local.computer
@@ -22,6 +22,9 @@ services:
       - database
     environment:
       MYSQL_ROOT_PASSWORD: strongpassword
+
+      # To Test Hosting Docker, Provision needs to know what your host machine's aegir-home path is, so it can write volume paths.
+      HOST_AEGIR_HOME: /home/jon/Projects/aegir/aegir-home
     volumes:
       - ./aegir-home:/var/aegir:Z
       - /var/run/docker.sock:/var/run/docker.sock
