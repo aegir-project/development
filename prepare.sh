@@ -16,10 +16,10 @@ fi
 cd aegir-home
 
 # Build a full hostmaster frontend on the host with drush make, with working-copy option.
-if [ ! -d $AEGIR_HOSTMASTER_ROOT ]; then
-   echo "Æ | Building hostmaster with drush make..."
-   drush make http://cgit.drupalcode.org/provision/plain/aegir.make?h=$AEGIR_VERSION $AEGIR_HOSTMASTER_ROOT --working-copy --no-gitinfofile
-fi
+#if [ ! -d $AEGIR_HOSTMASTER_ROOT ]; then
+#   echo "Æ | Building hostmaster with drush make..."
+#   drush make ../aegir-dev.make $AEGIR_HOSTMASTER_ROOT --working-copy --no-gitinfofile
+#fi
 
 
 DRUPALORG_PREFIX=https://git.drupal.org/project/

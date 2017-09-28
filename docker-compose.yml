@@ -25,8 +25,12 @@ services:
 
       # To Test Hosting Docker, Provision needs to know what your host machine's aegir-home path is, so it can write volume paths.
       HOST_AEGIR_HOME: /home/jon/Projects/aegir/aegir-home
+      AEGIR_VERSION: 7.x-3.x
+      AEGIR_MAKEFILE: /var/aegir-dev.make
+      AEGIR_HOSTMASTER_ROOT: /var/aegir/hostmaster-7.x-3.x
     volumes:
       - ./aegir-home:/var/aegir:Z
+      - ./aegir-dev.make:/var/aegir-dev.make:Z
       - /var/run/docker.sock:/var/run/docker.sock
   database:
     image: mariadb
