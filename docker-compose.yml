@@ -12,7 +12,7 @@ services:
 #      - hostmaster
   hostmaster:
     privileged: true
-    image: aegir/hostmaster:privileged
+    image: aegir/hostmaster:local
     ports:
       - 80:80
     hostname: aegir.local.computer
@@ -28,6 +28,7 @@ services:
       AEGIR_VERSION: 7.x-3.x
       AEGIR_MAKEFILE: /var/aegir-dev.make
       AEGIR_HOSTMASTER_ROOT: /var/aegir/hostmaster-7.x-3.x
+      AEGIR_WORKING_COPY: 1
     volumes:
       - ./aegir-home:/var/aegir:Z
       - ./aegir-dev.make:/var/aegir-dev.make:Z

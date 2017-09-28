@@ -91,10 +91,10 @@ sleep 5
 echo "Æ | Running docker build ..."
 
 cd dockerfiles
-docker build -t aegir/hostmaster:own --build-arg AEGIR_UID=$USER_UID .
+docker build -t aegir/hostmaster:dev .
 
 # @TODO: Do we need to do this? Or can we just specify volume to /var/aegir in the compose file?
-docker build -t aegir/hostmaster:local -f Dockerfile-local .
+docker build -t aegir/hostmaster:local --build-arg NEW_UID=$USER_UID -f Dockerfile-local .
 cd ..
 
 echo "==========================ÆGIR=========================="
